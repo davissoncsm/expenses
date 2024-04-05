@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Entities\UserEntity;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,9 +16,17 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\UserEntity::factory(10)->create();
 
-        // \App\Models\UserEntity::factory()->create([
-        //     'name' => 'Test UserEntity',
-        //     'email' => 'test@example.com',
-        // ]);
+         UserEntity::create([
+             'name' => 'Administrator',
+             'email' => 'admin@example.com',
+             'password' => Hash::make('123456'),
+             'is_admin' => true
+         ]);
+
+        UserEntity::create([
+            'name' => 'User Test',
+            'email' => 'user@example.com',
+            'password' => Hash::make('123456'),
+        ]);
     }
 }

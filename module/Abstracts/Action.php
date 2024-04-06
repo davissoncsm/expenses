@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Module\User\Actions;
+namespace Module\Abstracts;
 
 abstract class Action
 {

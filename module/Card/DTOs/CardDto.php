@@ -10,14 +10,16 @@ use Module\Card\Validation\CardValidation;
 class CardDto extends Dto
 {
     /**
-     * @param int $userId
      * @param string $number
      * @param string $balance
+     * @param int|null $id
+     * @param int|null $userId
      */
     public function __construct(
-        public int $userId,
         public string $number,
         public string $balance,
+        public ?int $id = null,
+        public ?int $userId = null,
     ){
     }
 
@@ -30,12 +32,16 @@ class CardDto extends Dto
        $validate = $validation->validated();
 
        return new self(
-           userId: $validate['user_id'],
            number: $validate['number'],
            balance: $validate['balance'],
+           id: $validation->id,
+           userId: $validate['user_id'] ?? null,
        );
    }
 
+    /**
+     * @return array
+     */
    public function create(): array
    {
        return [
@@ -44,4 +50,15 @@ class CardDto extends Dto
            'balance' => $this->balance,
        ];
    }
+
+    /**
+     * @return array
+     */
+    public function update(): array
+    {
+        return [
+            'number' => $this->number,
+            'balance' => $this->balance,
+        ];
+    }
 }

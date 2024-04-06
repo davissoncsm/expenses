@@ -3,7 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Module\User\Handlers\Auth\LoginHandler;
-use Module\Card\Handlers\CreateCardHandler;
+use Module\Card\Handlers\{CreateCardHandler, UpdateCardHandler};
 
 Route::group(['excluded_middleware' => 'auth:sanctum'], function (){
     Route::post('/login', LoginHandler::class);
@@ -12,4 +12,5 @@ Route::group(['excluded_middleware' => 'auth:sanctum'], function (){
 
 Route::group(['prefix' => 'cards'], function (){
     Route::post('/', CreateCardHandler::class);
+    Route::put('/{id}', UpdateCardHandler::class);
 });

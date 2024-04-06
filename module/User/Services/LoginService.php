@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Module\User\Services\Auth;
+namespace Module\User\Services;
 
 use Module\Abstracts\Service;
 use Module\User\Actions\LoginAction;

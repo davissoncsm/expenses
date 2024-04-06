@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Module\User\Handlers\Auth;
+namespace Module\User\Handlers;
 
 use Illuminate\Http\JsonResponse;
 use Module\User\DTOs\LoginDto;
 use Module\User\Presenters\LoginPresenter;
-use Module\User\Services\Auth\LoginService;
+use Module\User\Services\LoginService;
 use Module\User\Validation\LoginValidation;
 
 class LoginHandler

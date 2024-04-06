@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Repositories\Contracts;
 
 
-use App\DTOs\Dto;
+
+use Module\Abstracts\Dto;
 
 interface IBaseRepository
 {

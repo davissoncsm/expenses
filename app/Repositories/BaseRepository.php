@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\DTOs\Dto;
 use App\Exceptions\NotEntityDefinedException;
 use App\Repositories\Contracts\IBaseRepository;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
+use Module\Abstracts\Dto;
 
 class BaseRepository implements IBaseRepository
 {

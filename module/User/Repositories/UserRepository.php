@@ -6,7 +6,7 @@ namespace Module\User\Repositories;
 
 use App\Entities\UserEntity;
 use App\Repositories\BaseRepository;
-use Module\User\DTOs\Auth\LoginDto;
+use Module\User\DTOs\LoginDto;
 use Module\User\Repositories\Contracts\IUserRepository;
 
 class UserRepository extends BaseRepository implements IUserRepository

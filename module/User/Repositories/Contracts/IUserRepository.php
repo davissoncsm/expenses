@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Module\User\Repositories\Contracts;
 
-use Module\User\DTOs\Auth\LoginDto;
+use Module\User\DTOs\LoginDto;
 
 interface IUserRepository
 {

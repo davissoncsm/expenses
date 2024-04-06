@@ -5,8 +5,10 @@ namespace App\Providers;
 use App\Repositories\BaseRepository;
 use App\Repositories\Contracts\IBaseRepository;
 use Illuminate\Support\ServiceProvider;
-use Module\User\Repositories\Contracts\IUserRepository;
+use Module\Card\Repositories\CardRepository;
+use Module\Card\Repositories\Contracts\ICardRepository;
 use Module\User\Repositories\UserRepository;
+use Module\User\Repositories\Contracts\IUserRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -31,6 +33,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             IUserRepository::class,
             UserRepository::class
+        );
+
+        $this->app->bind(
+            ICardRepository::class,
+            CardRepository::class
         );
     }
 }

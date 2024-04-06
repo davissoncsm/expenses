@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Module\User\Services\Auth;
 
-use Module\User\Actions\Auth\LoginAction;
-use Module\User\DTOs\Auth\LoginDto;
-use Module\User\Services\Service;
+use Module\Abstracts\Service;
+use Module\User\Actions\LoginAction;
+use Module\User\DTOs\LoginDto;
 
 class LoginService extends Service
 {

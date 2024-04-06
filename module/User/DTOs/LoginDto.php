@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Module\User\DTOs\Auth;
+namespace Module\User\DTOs;
 
+use Module\Abstracts\Dto;
 use Module\User\Validation\LoginValidation;
 
-class LoginDto
+class LoginDto extends Dto
 {
     /**
      * @param string $email

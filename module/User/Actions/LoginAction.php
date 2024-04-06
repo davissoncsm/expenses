@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Module\User\Actions\Auth;
+namespace Module\User\Actions;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use Module\User\Actions\Action;
-use Module\User\DTOs\Auth\LoginDto;
+use Module\Abstracts\Action;
+use Module\User\DTOs\LoginDto;
 use Module\User\Repositories\UserRepository;
 
 class LoginAction extends  Action

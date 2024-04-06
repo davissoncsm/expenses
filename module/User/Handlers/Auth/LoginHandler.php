@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Module\User\Handlers\Auth;
 
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Routing\ResponseFactory;
-use Illuminate\Http\Response;
-use Module\User\DTOs\Auth\LoginDto;
-use Module\User\Response\LoginResponse;
+use Illuminate\Http\JsonResponse;
+use Module\User\DTOs\LoginDto;
+use Module\User\Presenters\LoginPresenter;
 use Module\User\Services\Auth\LoginService;
 use Module\User\Validation\LoginValidation;
 
@@ -16,9 +14,9 @@ class LoginHandler
 {
     /**
      * @param LoginValidation $validation
-     * @return Application|ResponseFactory|\Illuminate\Foundation\Application|Response
+     * @return JsonResponse
      */
-    public function __invoke(LoginValidation $validation)
+    public function __invoke(LoginValidation $validation): JsonResponse
     {
         $dto = LoginDto::makeFromValidation(validation: $validation);
 
@@ -26,6 +24,6 @@ class LoginHandler
                     ->setDto(dto: $dto)
                     ->execute();
 
-        return response((new LoginResponse($service))->response(), 200);
+        return response()->json(LoginPresenter::make($service)->toArray(), 200);
     }
 }

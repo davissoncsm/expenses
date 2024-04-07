@@ -49,12 +49,12 @@ class BaseRepository implements IBaseRepository
 
     /**
      * @param int $id
-     * @return array
+     * @return object
      * @throws Exception
      */
-    public function getById(int $id): array
+    public function getById(int $id): object
     {
-        return $this->run(fn() => $this->entity->find($id))?->toArray() ?? [];
+        return $this->run(fn() => $this->entity->find($id));
     }
 
     /**

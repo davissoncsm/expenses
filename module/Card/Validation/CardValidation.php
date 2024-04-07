@@ -4,6 +4,7 @@ namespace Module\Card\Validation;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Module\Card\Rules\UpdateCardRule;
 
 class CardValidation extends FormRequest
 {
@@ -53,8 +54,18 @@ class CardValidation extends FormRequest
     private function updateRules(): array
     {
         return [
-            'number' => 'required|numeric|digits_between:13,16|unique:cards,number,' . $this->id,
-            'limit' => 'required|integer',
+            'number' => [
+                new UpdateCardRule(cardId: $this->id),
+                'sometimes',
+                'numeric',
+                'digits_between:13,16',
+                'unique:cards,number,' . $this->id
+            ],
+            'limit' => [
+                new UpdateCardRule(cardId: $this->id),
+                'sometimes',
+                'integer'
+            ],
         ];
     }
 }

@@ -18,9 +18,9 @@ interface IBaseRepository
 
     /**
      * @param int $id
-     * @return array
+     * @return object
      */
-    public function getById(int $id): array;
+    public function getById(int $id): object;
 
     /**
      * @param Dto $dto

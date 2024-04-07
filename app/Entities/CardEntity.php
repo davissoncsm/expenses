@@ -4,6 +4,7 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CardEntity extends Model
 {
@@ -34,4 +35,12 @@ class CardEntity extends Model
         'number',
         'limit',
     ];
+
+    /**
+     * @return HasMany
+     */
+    public function expenses(): HasMany
+    {
+        return $this->hasMany(ExpenseEntity::class, 'card_id', 'id');
+    }
 }

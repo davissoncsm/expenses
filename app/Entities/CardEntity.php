@@ -5,6 +5,7 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 
 class CardEntity extends Model
 {
@@ -35,6 +36,16 @@ class CardEntity extends Model
         'number',
         'limit',
     ];
+
+    /**
+     * Scope a query to only include filter by user if user authenticated is not admin.
+     */
+    public function scopeUserFilter(Builder $query): void
+    {
+        $query->when(!auth()->user()->is_admin, function($builder) {
+            $builder->where('user_id', auth()->user()->id);
+        });
+    }
 
     /**
      * @return HasMany

@@ -1,8 +1,7 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
-use Module\Card\Handlers\{CreateCardHandler, DeleteCardHandler, UpdateCardHandler};
+use Module\Card\Handlers\{GetCardsHandler, CreateCardHandler, DeleteCardHandler, UpdateCardHandler};
 use Module\User\Handlers\{LoginHandler,CreateUserHandler,UpdateUserHandler, DeleteUserHandler};
 
 Route::group(['excluded_middleware' => 'auth:sanctum'], function (){
@@ -16,6 +15,7 @@ Route::group(['prefix' => 'users'], function (){
 });
 
 Route::group(['prefix' => 'cards'], function (){
+    Route::get('/', GetCardsHandler::class);
     Route::post('/', CreateCardHandler::class);
     Route::put('/{id}', UpdateCardHandler::class);
     Route::delete('/{id}', DeleteCardHandler::class);

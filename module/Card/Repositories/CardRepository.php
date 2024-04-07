@@ -17,4 +17,19 @@ class CardRepository extends BaseRepository implements ICardRepository
     {
         return CardEntity::class;
     }
+
+    /**
+     * @return array
+     */
+    public function getAll(): array
+    {
+        return $this->entity::userFilter()
+            ->select([
+                'id',
+                'number',
+                'limit'
+            ])
+            ->get()
+            ->toArray();
+    }
 }

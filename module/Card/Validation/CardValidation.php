@@ -2,9 +2,10 @@
 
 namespace Module\Card\Validation;
 
+use Exception;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Module\Card\Rules\UpdateCardRule;
+use Module\Card\Rules\ValidateIfExpensesExists;
 
 class CardValidation extends FormRequest
 {
@@ -15,9 +16,15 @@ class CardValidation extends FormRequest
 
     /**
      * Determine if the user is authorized to make this request.
+     * @throws Exception
      */
     public function authorize(): bool
     {
+        $this->id = (int)request()->route('id');
+
+        if($this->method() === 'PUT' || $this->method() === 'DELETE') {
+            (new ValidateIfExpensesExists(id: $this->id))->validate();
+        }
         return true;
     }
 
@@ -28,7 +35,6 @@ class CardValidation extends FormRequest
      */
     public function rules(): array
     {
-        $this->id = (int)request()->route('id');
 
         return match ($this->method()) {
             'POST' => $this->storeRules(),
@@ -54,18 +60,8 @@ class CardValidation extends FormRequest
     private function updateRules(): array
     {
         return [
-            'number' => [
-                new UpdateCardRule(cardId: $this->id),
-                'sometimes',
-                'numeric',
-                'digits_between:13,16',
-                'unique:cards,number,' . $this->id
-            ],
-            'limit' => [
-                new UpdateCardRule(cardId: $this->id),
-                'sometimes',
-                'integer'
-            ],
+            'number' => 'sometimes|numeric|digits_between:13,16|unique:cards,number,' . $this->id,
+            'limit' => 'sometimes|integer',
         ];
     }
 }

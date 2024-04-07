@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Module\Card\Rules;
 
-use Exception;
 use Module\Card\Actions\GetCardByIdAction;
+use Module\Card\Exceptions\ExistsExpensesException;
 
 class ValidateIfExpensesExists
 {
@@ -16,7 +16,7 @@ class ValidateIfExpensesExists
 
     /**
      * @return void
-     * @throws Exception
+     * @throws ExistsExpensesException
      */
     public function validate(): void
     {
@@ -25,7 +25,7 @@ class ValidateIfExpensesExists
             ->execute();
 
         if($card->expenses()->count() > 0){
-            throw new Exception('It is not permitted to change card details with open expenses');
+            throw new ExistsExpensesException('It is not permitted to change card details with open expenses');
         }
     }
 }

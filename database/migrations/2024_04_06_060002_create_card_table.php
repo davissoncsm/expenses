@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
             $table->string('number')->unique();
-            $table->integer('balance');
+            $table->integer('limit');
             $table->timestamps();
 
             $table->foreign('user_id')

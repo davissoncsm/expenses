@@ -32,7 +32,6 @@ class CardEntity extends Model
     protected $fillable = [
         'user_id',
         'number',
-        'balance',
+        'limit',
     ];
-
 }

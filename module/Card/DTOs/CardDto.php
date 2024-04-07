@@ -11,13 +11,13 @@ class CardDto extends Dto
 {
     /**
      * @param string $number
-     * @param string $balance
+     * @param string $limit
      * @param int|null $id
      * @param int|null $userId
      */
     public function __construct(
         public string $number,
-        public string $balance,
+        public string $limit,
         public ?int $id = null,
         public ?int $userId = null,
     ){
@@ -33,7 +33,7 @@ class CardDto extends Dto
 
        return new self(
            number: $validate['number'],
-           balance: $validate['balance'],
+           limit: $validate['limit'],
            id: $validation->id,
            userId: $validate['user_id'] ?? null,
        );
@@ -47,7 +47,7 @@ class CardDto extends Dto
        return [
            'user_id' => $this->userId,
            'number' => $this->number,
-           'balance' => $this->balance,
+           'limit' => $this->limit,
        ];
    }
 
@@ -58,7 +58,7 @@ class CardDto extends Dto
     {
         return [
             'number' => $this->number,
-            'balance' => $this->balance,
+            'limit' => $this->limit,
         ];
     }
 }

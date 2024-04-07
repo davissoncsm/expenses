@@ -42,8 +42,8 @@ class CardValidation extends FormRequest
     {
         return [
             'user_id' => 'required|int',
-            'number' => 'required|string|unique:cards,number',
-            'balance' => 'required|integer',
+            'number' => 'required|numeric|digits_between:13,16|unique:cards,number',
+            'limit' => 'required|integer',
         ];
     }
 
@@ -53,8 +53,8 @@ class CardValidation extends FormRequest
     private function updateRules(): array
     {
         return [
-            'number' => 'required|string|unique:cards,number,' . $this->id,
-            'balance' => 'required|integer',
+            'number' => 'required|numeric|digits_between:13,16|unique:cards,number,' . $this->id,
+            'limit' => 'required|integer',
         ];
     }
 }

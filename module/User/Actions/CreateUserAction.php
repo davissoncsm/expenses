@@ -6,7 +6,7 @@ namespace Module\User\Actions;
 use Exception;
 use Module\Abstracts\Action;
 use Module\User\DTOs\UserDto;
-use Module\User\Repositories\UserRepository;
+use Module\User\Repositories\Contracts\IUserRepository;
 
 class CreateUserAction extends  Action
 {
@@ -19,10 +19,10 @@ class CreateUserAction extends  Action
     /**
      * Class instance
      *
-     * @param UserRepository $userRepository
+     * @param IUserRepository $userRepository
      */
     public function __construct(
-        protected UserRepository $userRepository,
+        protected IUserRepository $userRepository,
     ){
     }
 

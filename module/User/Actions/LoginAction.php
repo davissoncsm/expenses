@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Module\Abstracts\Action;
 use Module\User\DTOs\LoginDto;
-use Module\User\Repositories\UserRepository;
+use Module\User\Repositories\Contracts\IUserRepository;
 
 class LoginAction extends  Action
 {
@@ -20,10 +20,10 @@ class LoginAction extends  Action
     /**
      * Class instance
      *
-     * @param UserRepository $userRepository
+     * @param IUserRepository $userRepository
      */
     public function __construct(
-        protected UserRepository $userRepository,
+        protected IUserRepository $userRepository,
     ){
     }
 

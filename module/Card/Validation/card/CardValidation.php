@@ -1,6 +1,6 @@
 <?php
 
-namespace Module\Card\Validation;
+namespace Module\Card\Validation\card;
 
 use Exception;
 use Illuminate\Contracts\Validation\ValidationRule;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\Handlers;
+namespace Module\Card\Handlers\card;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Module\Card\Services\DeleteCardService;
-use Module\Card\Validation\CardValidation;
+use Module\Card\Services\card\DeleteCardService;
+use Module\Card\Validation\card\CardValidation;
 
 class DeleteCardHandler
 {

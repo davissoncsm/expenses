@@ -2,31 +2,37 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\Actions;
+namespace Module\Card\Actions\card;
 
 use Exception;
 use Module\Abstracts\Action;
+use Module\Card\DTOs\card\CardDto;
 use Module\Card\Repositories\Contracts\ICardRepository;
 
-class DeleteCardAction extends Action
+class CreateCardAction extends Action
 {
     /**
-     * @var int
+     * @var CardDto
      */
-    private int $id;
+    private CardDto $dto;
 
+    /**
+     * Class instance
+     *
+     * @param ICardRepository $repository
+     */
     public function __construct(
         protected ICardRepository $repository,
     ){
     }
 
     /**
-     * @param int $id
+     * @param CardDto $dto
      * @return $this
      */
-    public function setId(int $id): static
+    public function setDto(CardDto $dto): static
     {
-        $this->id = $id;
+        $this->dto = $dto;
         return $this;
     }
 
@@ -36,6 +42,6 @@ class DeleteCardAction extends Action
      */
     public function execute(): void
     {
-        $this->repository->delete($this->id);
+        $this->repository->store($this->dto);
     }
 }

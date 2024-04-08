@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\Services;
+namespace Module\Card\Services\card;
 
 use Exception;
 use Module\Abstracts\Service;
-use Module\Card\Actions\DeleteCardAction;
+use Module\Card\Actions\card\DeleteCardAction;
 
 class DeleteCardService extends Service
 {

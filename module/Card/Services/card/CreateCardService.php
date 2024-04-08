@@ -2,24 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\Actions;
+namespace Module\Card\Services\card;
 
 use Exception;
-use Module\Abstracts\Action;
-use Module\Card\DTOs\CardDto;
-use Module\Card\Repositories\Contracts\ICardRepository;
+use Module\Abstracts\Service;
+use Module\Card\Actions\card\CreateCardAction;
+use Module\Card\DTOs\card\CardDto;
 
-class CreateCardAction extends Action
+class CreateCardService extends Service
 {
+
     /**
      * @var CardDto
      */
     private CardDto $dto;
-
-    public function __construct(
-        protected ICardRepository $repository,
-    ){
-    }
 
     /**
      * @param CardDto $dto
@@ -31,12 +27,15 @@ class CreateCardAction extends Action
         return $this;
     }
 
+
     /**
      * @return void
      * @throws Exception
      */
     public function execute(): void
     {
-        $this->repository->store($this->dto);
+        app(CreateCardAction::class)
+            ->setDto(dto: $this->dto)
+            ->execute();
     }
 }

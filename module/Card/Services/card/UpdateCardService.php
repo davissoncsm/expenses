@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\Services;
+namespace Module\Card\Services\card;
 
 use Exception;
 use Module\Abstracts\Service;
-use Module\Card\Actions\UpdateCardAction;
-use Module\Card\DTOs\CardDto;
+use Module\Card\Actions\card\UpdateCardAction;
+use Module\Card\DTOs\card\CardDto;
 
 class UpdateCardService extends Service
 {

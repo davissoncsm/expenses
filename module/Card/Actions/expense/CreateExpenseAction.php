@@ -16,8 +16,13 @@ class CreateExpenseAction extends Action
      */
     private ExpenseDto $dto;
 
+    /**
+     * Class instance
+     *
+     * @param IExpenseRepository $repository
+     */
     public function __construct(
-        public IExpenseRepository $repository,
+        protected IExpenseRepository $repository,
     ){
     }
 

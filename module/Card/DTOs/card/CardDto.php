@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\DTOs;
+namespace Module\Card\DTOs\card;
 
 use Module\Abstracts\Dto;
-use Module\Card\Validation\CardValidation;
+use Module\Card\Validation\card\CardValidation;
 
 class CardDto extends Dto
 {

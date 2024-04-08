@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\Handlers;
+namespace Module\Card\Handlers\card;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Module\Card\DTOs\CardDto;
-use Module\Card\Services\UpdateCardService;
-use Module\Card\Validation\CardValidation;
+use Module\Card\DTOs\card\CardDto;
+use Module\Card\Services\card\UpdateCardService;
+use Module\Card\Validation\card\CardValidation;
 
 class UpdateCardHandler
 {

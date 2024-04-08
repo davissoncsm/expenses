@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\Actions;
+namespace Module\Card\Actions\card;
 
 use Exception;
 use Module\Abstracts\Action;
@@ -15,6 +15,11 @@ class GetCardByIdAction extends Action
      */
     private int $id;
 
+    /**
+     * Class instance
+     *
+     * @param ICardRepository $repository
+     */
     public function __construct(
         protected ICardRepository $repository,
     ){

@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\Services;
+namespace Module\Card\Services\card;
 
-use Exception;
 use Module\Abstracts\Service;
-use Module\Card\Actions\GetCardsAction;
+use Module\Card\Actions\card\GetCardsAction;
 
 class GetCardsService extends Service
 {

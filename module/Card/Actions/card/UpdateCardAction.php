@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\Actions;
+namespace Module\Card\Actions\card;
 
 use Exception;
 use Module\Abstracts\Action;
-use Module\Card\DTOs\CardDto;
+use Module\Card\DTOs\card\CardDto;
 use Module\Card\Repositories\Contracts\ICardRepository;
 
 class UpdateCardAction extends Action
@@ -16,6 +16,11 @@ class UpdateCardAction extends Action
      */
     private CardDto $dto;
 
+    /**
+     * Class instance
+     *
+     * @param ICardRepository $repository
+     */
     public function __construct(
         protected ICardRepository $repository,
     ){

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\Actions;
+namespace Module\Card\Actions\card;
 
 use Module\Abstracts\Action;
 use Module\Card\Repositories\Contracts\ICardRepository;

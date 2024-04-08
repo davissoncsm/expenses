@@ -2,7 +2,7 @@
 
 namespace Module\Card\Listeners;
 
-use Module\Card\Actions\UpdateCardLimitAction;
+use Module\Card\Actions\card\UpdateCardLimitAction;
 use Module\Card\Events\UpdateBalanceEvent;
 
 class UpdateBalanceListener

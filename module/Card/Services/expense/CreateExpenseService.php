@@ -9,8 +9,6 @@ use Module\Card\Actions\expense\CheckIsAllowedPostExpenseAction;
 use Module\Card\Actions\expense\CreateExpenseAction;
 use Module\Card\Actions\expense\EmitAdministratorsExpenseNotificationAction;
 use Module\Card\Actions\expense\EmitUserExpenseNotificationAction;
-use Module\Card\Actions\UpdateCardAction;
-use Module\Card\DTOs\CardDto;
 use Module\Card\DTOs\expense\ExpenseDto;
 use Module\Card\Events\UpdateBalanceEvent;
 

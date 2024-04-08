@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Module\Card\Rules;
 
-use Module\Card\Actions\GetCardByIdAction;
+use Module\Card\Actions\card\GetCardByIdAction;
 use Module\Card\Exceptions\ExistsExpensesException;
 
 class ValidateIfExpensesExists

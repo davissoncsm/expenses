@@ -16,6 +16,7 @@ class CreateExpenseHandler
 
         app(CreateExpenseService::class)
             ->setDto(dto: $dto)
+            ->setUser(user: auth()->user())
             ->execute();
     }
 }

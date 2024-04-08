@@ -32,4 +32,14 @@ class CardRepository extends BaseRepository implements ICardRepository
             ->get()
             ->toArray();
     }
+
+    /**
+     * @param object $card
+     * @param int $value
+     * @return void
+     */
+    public function updateCardLimit(object $card, int $value): void
+    {
+        $card->update(['limit' => $value]);
+    }
 }

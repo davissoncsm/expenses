@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Module\Card\Actions\expense;
 
-use Illuminate\Database\Eloquent\Collection;
 use Module\Abstracts\Action;
 use Module\Card\Notifications\UserExpenseNotification;
 use Module\User\Repositories\Contracts\IUserRepository;

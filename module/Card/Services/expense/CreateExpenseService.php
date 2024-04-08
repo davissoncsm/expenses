@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace Module\Card\Services\expense;
 
 use Module\Abstracts\Service;
+use Module\Card\Actions\expense\CheckIsAllowedPostExpenseAction;
 use Module\Card\Actions\expense\CreateExpenseAction;
 use Module\Card\Actions\expense\EmitAdministratorsExpenseNotificationAction;
 use Module\Card\Actions\expense\EmitUserExpenseNotificationAction;
+use Module\Card\Actions\UpdateCardAction;
+use Module\Card\DTOs\CardDto;
 use Module\Card\DTOs\expense\ExpenseDto;
+use Module\Card\Events\UpdateBalanceEvent;
 
 class CreateExpenseService extends Service
 {
@@ -16,6 +20,11 @@ class CreateExpenseService extends Service
      * @var ExpenseDto
      */
     private ExpenseDto $dto;
+
+    /**
+     * @var object
+     */
+    private object $user;
 
     /**
      * @param ExpenseDto $dto
@@ -28,14 +37,37 @@ class CreateExpenseService extends Service
     }
 
     /**
+     * @param object $user
+     * @return $this
+     */
+    public function setUser(object $user): static
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
      * @return void
      */
     public function execute(): void
     {
-        $expense = $this->createExpense();
-        $user = $this->emitUserNotification(expense: $expense);
-        $this->emitAdministratorsNotification(user: $user, expense: $expense);
+        $this->checkIsAllowedPostExpense();
 
+        $expense = $this->createExpense();
+        $this->emitUserNotification(expense: $expense);
+        $this->emitAdministratorsNotification(expense: $expense);
+        $this->updateCardLimit(expense: $expense);
+    }
+
+    /**
+     * @return void
+     */
+    private function checkIsAllowedPostExpense(): void
+    {
+        app(CheckIsAllowedPostExpenseAction::class)
+            ->setUser(user: $this->user)
+            ->setDto(dto: $this->dto)
+            ->execute();
     }
 
     /**
@@ -50,25 +82,35 @@ class CreateExpenseService extends Service
 
     /**
      * @param object $expense
-     * @return object
+     * @return void
      */
-    private function emitUserNotification(object $expense): object
+    private function emitUserNotification(object $expense): void
     {
-        return app(EmitUserExpenseNotificationAction::class)
+        app(EmitUserExpenseNotificationAction::class)
             ->setExpense(expense: $expense)
+            ->setUser(user: $this->user)
             ->execute();
     }
 
     /**
-     * @param object $user
      * @param object $expense
      * @return void
      */
-    private function emitAdministratorsNotification(object $user, object $expense): void
+    private function emitAdministratorsNotification(object $expense): void
     {
         app(EmitAdministratorsExpenseNotificationAction::class)
             ->setExpense(expense: $expense)
-            ->setUser(user: $user)
+            ->setUser(user: $this->user)
             ->execute();
+    }
+
+    /**
+     * @param object $expense
+     * @return void
+     */
+    private function updateCardLimit(object $expense): void
+    {
+        $card = $expense->card;
+        event(new UpdateBalanceEvent(card: $card, value: $expense->value));
     }
 }

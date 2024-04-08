@@ -16,6 +16,11 @@ class EmitUserExpenseNotificationAction extends Action
     private object $expense;
 
     /**
+     * @var object
+     */
+    private object $user;
+
+    /**
      * @param object $expense
      * @return $this
      */
@@ -26,26 +31,27 @@ class EmitUserExpenseNotificationAction extends Action
     }
 
     /**
-     * @return object
+     * @param object $user
+     * @return $this
      */
-    public function execute(): object
+    public function setUser(object $user): static
     {
-        $user = $this->getUser();
-        $message = $this->getMessage();
-
-        $user->notify((new UserExpenseNotification($message)));
-
-        return $user;
+        $this->user = $user;
+        return $this;
     }
 
     /**
-     * @return object
+     * @return void
      */
-    private function getUser():object
+    public function execute(): void
     {
-        return $this->expense->card->user;
+        $message = $this->getMessage();
+        $this->user->notify((new UserExpenseNotification($message)));
     }
 
+    /**
+     * @return string
+     */
     private function getMessage(): string
     {
         return 'Você cadastrou uma nova despesa no valor de: R$' . number_format($this->expense->value,2,',', '.');

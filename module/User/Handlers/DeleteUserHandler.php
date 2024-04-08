@@ -6,7 +6,7 @@ namespace Module\User\Handlers;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Module\Card\Presenter\DeleteCardPresenter;
+use Module\Card\Presenter\card\DeleteCardPresenter;
 use Module\User\Services\DeleteUserService;
 
 class DeleteUserHandler

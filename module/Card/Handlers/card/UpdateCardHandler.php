@@ -7,7 +7,7 @@ namespace Module\Card\Handlers\card;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Module\Card\DTOs\card\CardDto;
-use Module\Card\Presenter\UpdateCardPresenter;
+use Module\Card\Presenter\card\UpdateCardPresenter;
 use Module\Card\Services\card\UpdateCardService;
 use Module\Card\Validation\card\CardValidation;
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Module\Card\Handlers\card;
 
 use Illuminate\Http\JsonResponse;
-use Module\Card\Presenter\GetCardsPresenter;
+use Module\Card\Presenter\card\GetCardsPresenter;
 use Module\Card\Services\card\GetCardsService;
 
 class GetCardsHandler

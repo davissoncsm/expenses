@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Module\Card\Presenter;
+namespace Module\Card\Presenter\card;
 
 class UpdateCardPresenter
 {

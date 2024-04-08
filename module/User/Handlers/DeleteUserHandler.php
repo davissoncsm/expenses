@@ -6,7 +6,7 @@ namespace Module\User\Handlers;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Module\User\Presenters\DeleteUserPresenter;
+use Module\Card\Presenter\DeleteCardPresenter;
 use Module\User\Services\DeleteUserService;
 
 class DeleteUserHandler
@@ -23,6 +23,6 @@ class DeleteUserHandler
                 ->setId(id: $id)
                 ->execute();
 
-        return response()->json(DeleteUserPresenter::make()->toArray(), 204);
+        return response()->json(DeleteCardPresenter::make()->toArray(), 204);
     }
 }

@@ -7,6 +7,7 @@ namespace Module\Card\Handlers\card;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Module\Card\DTOs\card\CardDto;
+use Module\Card\Presenter\UpdateCardPresenter;
 use Module\Card\Services\card\UpdateCardService;
 use Module\Card\Validation\card\CardValidation;
 
@@ -25,6 +26,6 @@ class UpdateCardHandler
             ->setDto(dto: $dto)
             ->execute();
 
-        return response()->json([], 204);
+        return response()->json(UpdateCardPresenter::make()->toArray(), 204);
     }
 }

@@ -13,4 +13,9 @@ interface IUserRepository
      * @return object|null
      */
     public function getUserByEmail(LoginDto $dto): object|null;
+
+    /**
+     * @return object
+     */
+    public function getAdministrators(): object;
 }

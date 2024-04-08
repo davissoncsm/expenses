@@ -7,6 +7,8 @@ use App\Repositories\Contracts\IBaseRepository;
 use Illuminate\Support\ServiceProvider;
 use Module\Card\Repositories\CardRepository;
 use Module\Card\Repositories\Contracts\ICardRepository;
+use Module\Card\Repositories\Contracts\IExpenseRepository;
+use Module\Card\Repositories\ExpenseRepository;
 use Module\User\Repositories\UserRepository;
 use Module\User\Repositories\Contracts\IUserRepository;
 
@@ -38,6 +40,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ICardRepository::class,
             CardRepository::class
+        );
+
+        $this->app->bind(
+            IExpenseRepository::class,
+            ExpenseRepository::class
         );
     }
 }

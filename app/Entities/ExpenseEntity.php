@@ -4,6 +4,7 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ExpenseEntity extends Model
 {
@@ -33,4 +34,12 @@ class ExpenseEntity extends Model
         'card_id',
         'value',
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function card(): BelongsTo
+    {
+        return $this->belongsTo(CardEntity::class, 'card_id', 'id');
+    }
 }

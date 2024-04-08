@@ -29,4 +29,14 @@ class UserRepository extends BaseRepository implements IUserRepository
                     ->where('email', $dto->email)
                     ->first();
     }
+
+    /**
+     * @return object
+     */
+    public function getAdministrators(): object
+    {
+        return $this->entity
+            ->where('is_admin', true)
+            ->get();
+    }
 }

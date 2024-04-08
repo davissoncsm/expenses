@@ -6,7 +6,8 @@ namespace Module\Card\Actions\expense;
 
 use Module\Abstracts\Action;
 use Module\Card\DTOs\expense\ExpenseDto;
-use Module\Card\Exceptions\InsufficientBalanceException;
+use Module\Card\Exceptions\card\InsufficientBalanceException;
+use Module\Card\Exceptions\expense\ExpenseNotBelongsToCardException;
 use Module\User\Repositories\Contracts\IUserRepository;
 
 class CheckIsAllowedPostExpenseAction extends Action
@@ -53,6 +54,7 @@ class CheckIsAllowedPostExpenseAction extends Action
 
     /**
      * @return void
+     * @throws ExpenseNotBelongsToCardException
      * @throws InsufficientBalanceException
      */
     public function execute(): void
@@ -66,12 +68,18 @@ class CheckIsAllowedPostExpenseAction extends Action
 
     /**
      * @return int
+     * @throws ExpenseNotBelongsToCardException
      */
     private function getUserBalance():int
     {
-        return $this->user->cards()
-                          ->where('id', $this->dto->cardId)
-                          ->first()
-                          ->limit;
+        try {
+            return $this->user->cards()
+                ->where('id', $this->dto->cardId)
+                ->first()
+                ->limit;
+        }catch (\Exception $e){
+            throw new ExpenseNotBelongsToCardException();
+        }
+
     }
 }

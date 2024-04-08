@@ -1,13 +1,13 @@
 <?php
 
-namespace Module\Card\Exceptions;
+namespace Module\Card\Exceptions\card;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class InsufficientBalanceException extends Exception
+class UpdateCardException extends Exception
 {
     /**
      * @return void
@@ -25,9 +25,9 @@ class InsufficientBalanceException extends Exception
     {
         return response()->json([
             'error' => [
-                'message' => $this->message,
+                'message' => 'Failed to update card.',
             ],
 
-        ], Response::HTTP_BAD_REQUEST);
+        ], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }

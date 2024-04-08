@@ -1,13 +1,13 @@
 <?php
 
-namespace Module\Card\Exceptions;
+namespace Module\Card\Exceptions\card;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class ExistsExpensesException extends Exception
+class InsufficientBalanceException extends Exception
 {
     /**
      * @return void

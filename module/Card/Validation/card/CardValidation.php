@@ -39,6 +39,7 @@ class CardValidation extends FormRequest
         return match ($this->method()) {
             'POST' => $this->storeRules(),
             'PUT' => $this->updateRules(),
+            'DELETE' => $this->deleteRules(),
         };
     }
 
@@ -63,5 +64,10 @@ class CardValidation extends FormRequest
             'number' => 'sometimes|numeric|digits_between:13,16|unique:cards,number,' . $this->id,
             'limit' => 'sometimes|integer',
         ];
+    }
+
+    private function deleteRules(): array
+    {
+        return [];
     }
 }

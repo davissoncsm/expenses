@@ -9,7 +9,6 @@ use App\Repositories\Contracts\IBaseRepository;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\DB;
 use Module\Abstracts\Dto;
 
 class BaseRepository implements IBaseRepository
@@ -54,7 +53,7 @@ class BaseRepository implements IBaseRepository
      */
     public function getById(int $id): object
     {
-        return $this->run(fn() => $this->entity->find($id));
+        return $this->run(fn() => $this->entity->findOrFail($id));
     }
 
     /**
@@ -103,19 +102,6 @@ class BaseRepository implements IBaseRepository
      */
     public function run($closure): mixed
     {
-        try {
-            DB::beginTransaction();
-
-            $execute = call_user_func($closure);
-
-            DB::commit();
-
-            return $execute;
-
-        } catch (Exception $e) {
-            DB::rollBack();
-
-            throw new Exception($e->getMessage());
-        }
+        return call_user_func($closure);
     }
 }

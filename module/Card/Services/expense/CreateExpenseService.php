@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Module\Card\Services\expense;
 
+use Illuminate\Support\Facades\DB;
 use Module\Abstracts\Service;
 use Module\Card\Actions\expense\CheckIsAllowedPostExpenseAction;
 use Module\Card\Actions\expense\CreateExpenseAction;
@@ -11,6 +12,7 @@ use Module\Card\Actions\expense\EmitAdministratorsExpenseNotificationAction;
 use Module\Card\Actions\expense\EmitUserExpenseNotificationAction;
 use Module\Card\DTOs\expense\ExpenseDto;
 use Module\Card\Events\UpdateBalanceEvent;
+use Module\Card\Exceptions\expense\UpdateExpenseException;
 
 class CreateExpenseService extends Service
 {
@@ -46,15 +48,26 @@ class CreateExpenseService extends Service
 
     /**
      * @return void
+     * @throws UpdateExpenseException
      */
     public function execute(): void
     {
         $this->checkIsAllowedPostExpense();
 
-        $expense = $this->createExpense();
-        $this->emitUserNotification(expense: $expense);
-        $this->emitAdministratorsNotification(expense: $expense);
-        $this->updateCardLimit(expense: $expense);
+        try {
+            DB::beginTransaction();
+
+            $expense = $this->createExpense();
+            $this->emitUserNotification(expense: $expense);
+            $this->emitAdministratorsNotification(expense: $expense);
+            $this->updateCardLimit(expense: $expense);
+
+            DB::commit();
+        }catch (\Exception $e){
+            DB::rollBack();
+            throw new UpdateExpenseException($e->getMessage());
+        }
+
     }
 
     /**

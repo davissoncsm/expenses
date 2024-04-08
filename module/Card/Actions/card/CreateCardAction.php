@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Module\Card\Actions\card;
 
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Module\Abstracts\Action;
 use Module\Card\DTOs\card\CardDto;
+use Module\Card\Exceptions\card\CreateCardException;
 use Module\Card\Repositories\Contracts\ICardRepository;
 
 class CreateCardAction extends Action
@@ -42,6 +44,15 @@ class CreateCardAction extends Action
      */
     public function execute(): void
     {
-        $this->repository->store($this->dto);
+        try {
+            DB::beginTransaction();
+
+            $this->repository->store($this->dto);
+
+            DB::commit();
+        }catch (Exception $e){
+            DB::rollBack();
+            throw new CreateCardException($e->getMessage());
+        }
     }
 }

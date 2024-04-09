@@ -3,6 +3,8 @@
 namespace App\Entities;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -59,6 +61,14 @@ class UserEntity extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * @return Factory
+     */
+    protected static function newFactory(): Factory
+    {
+        return UserFactory::new();
+    }
 
     /**
      * @return HasMany

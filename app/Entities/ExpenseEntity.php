@@ -2,6 +2,8 @@
 
 namespace App\Entities;
 
+use Database\Factories\ExpenseFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,6 +36,14 @@ class ExpenseEntity extends Model
         'card_id',
         'value',
     ];
+
+    /**
+     * @return Factory
+     */
+    protected static function newFactory(): Factory
+    {
+        return ExpenseFactory::new();
+    }
 
     /**
      * @return BelongsTo

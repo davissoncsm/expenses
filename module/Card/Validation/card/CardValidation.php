@@ -51,7 +51,7 @@ class CardValidation extends FormRequest
         return [
             'user_id' => 'required|int',
             'number' => 'required|numeric|digits_between:13,16|unique:cards,number',
-            'limit' => 'required|integer',
+            'limit' => 'required|int',
         ];
     }
 

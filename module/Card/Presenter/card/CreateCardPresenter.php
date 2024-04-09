@@ -13,7 +13,8 @@ class CreateCardPresenter
 
     public static function make(array $cards = []): CreateCardPresenter
     {
-        return new self($cards);
+        $response = ['message' => 'created successfully'];
+        return new self($response);
     }
 
     public function toArray(): array

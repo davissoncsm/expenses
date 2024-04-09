@@ -2,11 +2,13 @@
 
 namespace App\Entities;
 
+use Database\Factories\CardFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CardEntity extends Model
 {
@@ -46,6 +48,14 @@ class CardEntity extends Model
         $query->when(!auth()->user()->is_admin, function($builder) {
             $builder->where('user_id', auth()->user()->id);
         });
+    }
+
+    /**
+     * @return Factory
+     */
+    protected static function newFactory(): Factory
+    {
+        return CardFactory::new();
     }
 
     /**

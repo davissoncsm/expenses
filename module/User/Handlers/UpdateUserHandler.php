@@ -7,7 +7,6 @@ namespace Module\User\Handlers;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Module\User\DTOs\UserDto;
-use Module\User\Presenters\UpdateUserPresenter;
 use Module\User\Services\UpdateUserService;
 use Module\User\Validation\UserValidation;
 
@@ -26,6 +25,6 @@ class UpdateUserHandler
                 ->setDto(dto: $dto)
                 ->execute();
 
-        return response()->json(UpdateUserPresenter::make()->toArray(), 204);
+        return response()->json([], 204);
     }
 }

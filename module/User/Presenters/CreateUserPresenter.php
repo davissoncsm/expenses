@@ -13,7 +13,7 @@ class CreateUserPresenter
 
     public static function make(): CreateUserPresenter
     {
-        $presenter = ['message' => 'success'];
+        $presenter = ['message' => 'created successfully'];
         return new self($presenter);
     }
 

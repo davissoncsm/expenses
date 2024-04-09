@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Entities\UserEntity;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -15,6 +16,8 @@ class UserFactory extends Factory
      * The current password being used by the factory.
      */
     protected static ?string $password;
+
+    protected $model = UserEntity::class;
 
     /**
      * Define the model's default state.
@@ -41,4 +44,5 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
 }

@@ -24,7 +24,6 @@ class LoginValidation extends FormRequest
         return [
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
-            'password_confirmation' => 'required|string|min:6|same:password',
             'device_name' => 'required|string',
         ];
     }

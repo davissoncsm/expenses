@@ -24,8 +24,14 @@ class DatabaseSeeder extends Seeder
          ]);
 
         UserEntity::create([
-            'name' => 'User Test',
-            'email' => 'user@example.com',
+            'name' => 'User1 Test',
+            'email' => 'user1@example.com',
+            'password' => Hash::make('123456'),
+        ]);
+
+        UserEntity::create([
+            'name' => 'User2 Test',
+            'email' => 'user1@example.com',
             'password' => Hash::make('123456'),
         ]);
     }
